@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="48" viewBox="0 0 240 48">
+  <circle cx="24" cy="24" r="20" fill="#C0507C"/>
+  <path d="M15 25.5l6 6 12-13" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="54" y="21" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#F3E8EE">Customer</text>
+  <text x="54" y="41" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#F0B3CB">Follow-up</text>
+</svg>

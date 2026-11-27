@@ -1,0 +1,661 @@
+{
+  "revenue_concentration": {
+    "customers": 4334,
+    "total_revenue": 8737227.64,
+    "top10pct_share": 0.6142,
+    "top20pct_share": 0.746,
+    "curve": [
+      {
+        "pct_customers": 0.0,
+        "pct_revenue": 0.032
+      },
+      {
+        "pct_customers": 0.009,
+        "pct_revenue": 0.315
+      },
+      {
+        "pct_customers": 0.019,
+        "pct_revenue": 0.383
+      },
+      {
+        "pct_customers": 0.028,
+        "pct_revenue": 0.429
+      },
+      {
+        "pct_customers": 0.037,
+        "pct_revenue": 0.464
+      },
+      {
+        "pct_customers": 0.046,
+        "pct_revenue": 0.494
+      },
+      {
+        "pct_customers": 0.056,
+        "pct_revenue": 0.52
+      },
+      {
+        "pct_customers": 0.065,
+        "pct_revenue": 0.543
+      },
+      {
+        "pct_customers": 0.074,
+        "pct_revenue": 0.564
+      },
+      {
+        "pct_customers": 0.083,
+        "pct_revenue": 0.583
+      },
+      {
+        "pct_customers": 0.093,
+        "pct_revenue": 0.6
+      },
+      {
+        "pct_customers": 0.102,
+        "pct_revenue": 0.617
+      },
+      {
+        "pct_customers": 0.111,
+        "pct_revenue": 0.633
+      },
+      {
+        "pct_customers": 0.12,
+        "pct_revenue": 0.647
+      },
+      {
+        "pct_customers": 0.129,
+        "pct_revenue": 0.661
+      },
+      {
+        "pct_customers": 0.139,
+        "pct_revenue": 0.674
+      },
+      {
+        "pct_customers": 0.148,
+        "pct_revenue": 0.686
+      },
+      {
+        "pct_customers": 0.157,
+        "pct_revenue": 0.698
+      },
+      {
+        "pct_customers": 0.166,
+        "pct_revenue": 0.709
+      },
+      {
+        "pct_customers": 0.176,
+        "pct_revenue": 0.72
+      },
+      {
+        "pct_customers": 0.185,
+        "pct_revenue": 0.73
+      },
+      {
+        "pct_customers": 0.194,
+        "pct_revenue": 0.74
+      },
+      {
+        "pct_customers": 0.203,
+        "pct_revenue": 0.749
+      },
+      {
+        "pct_customers": 0.213,
+        "pct_revenue": 0.758
+      },
+      {
+        "pct_customers": 0.222,
+        "pct_revenue": 0.767
+      },
+      {
+        "pct_customers": 0.231,
+        "pct_revenue": 0.775
+      },
+      {
+        "pct_customers": 0.24,
+        "pct_revenue": 0.783
+      },
+      {
+        "pct_customers": 0.249,
+        "pct_revenue": 0.791
+      },
+      {
+        "pct_customers": 0.259,
+        "pct_revenue": 0.798
+      },
+      {
+        "pct_customers": 0.268,
+        "pct_revenue": 0.805
+      },
+      {
+        "pct_customers": 0.277,
+        "pct_revenue": 0.812
+      },
+      {
+        "pct_customers": 0.286,
+        "pct_revenue": 0.818
+      },
+      {
+        "pct_customers": 0.296,
+        "pct_revenue": 0.825
+      },
+      {
+        "pct_customers": 0.305,
+        "pct_revenue": 0.831
+      },
+      {
+        "pct_customers": 0.314,
+        "pct_revenue": 0.837
+      },
+      {
+        "pct_customers": 0.323,
+        "pct_revenue": 0.843
+      },
+      {
+        "pct_customers": 0.332,
+        "pct_revenue": 0.848
+      },
+      {
+        "pct_customers": 0.342,
+        "pct_revenue": 0.853
+      },
+      {
+        "pct_customers": 0.351,
+        "pct_revenue": 0.858
+      },
+      {
+        "pct_customers": 0.36,
+        "pct_revenue": 0.863
+      },
+      {
+        "pct_customers": 0.369,
+        "pct_revenue": 0.868
+      },
+      {
+        "pct_customers": 0.379,
+        "pct_revenue": 0.873
+      },
+      {
+        "pct_customers": 0.388,
+        "pct_revenue": 0.877
+      },
+      {
+        "pct_customers": 0.397,
+        "pct_revenue": 0.882
+      },
+      {
+        "pct_customers": 0.406,
+        "pct_revenue": 0.886
+      },
+      {
+        "pct_customers": 0.416,
+        "pct_revenue": 0.89
+      },
+      {
+        "pct_customers": 0.425,
+        "pct_revenue": 0.894
+      },
+      {
+        "pct_customers": 0.434,
+        "pct_revenue": 0.898
+      },
+      {
+        "pct_customers": 0.443,
+        "pct_revenue": 0.901
+      },
+      {
+        "pct_customers": 0.452,
+        "pct_revenue": 0.905
+      },
+      {
+        "pct_customers": 0.462,
+        "pct_revenue": 0.908
+      },
+      {
+        "pct_customers": 0.471,
+        "pct_revenue": 0.912
+      },
+      {
+        "pct_customers": 0.48,
+        "pct_revenue": 0.915
+      },
+      {
+        "pct_customers": 0.489,
+        "pct_revenue": 0.918
+      },
+      {
+        "pct_customers": 0.499,
+        "pct_revenue": 0.921
+      },
+      {
+        "pct_customers": 0.508,
+        "pct_revenue": 0.924
+      },
+      {
+        "pct_customers": 0.517,
+        "pct_revenue": 0.927
+      },
+      {
+        "pct_customers": 0.526,
+        "pct_revenue": 0.93
+      },
+      {
+        "pct_customers": 0.536,
+        "pct_revenue": 0.933
+      },
+      {
+        "pct_customers": 0.545,
+        "pct_revenue": 0.935
+      },
+      {
+        "pct_customers": 0.554,
+        "pct_revenue": 0.938
+      },
+      {
+        "pct_customers": 0.563,
+        "pct_revenue": 0.941
+      },
+      {
+        "pct_customers": 0.572,
+        "pct_revenue": 0.943
+      },
+      {
+        "pct_customers": 0.582,
+        "pct_revenue": 0.945
+      },
+      {
+        "pct_customers": 0.591,
+        "pct_revenue": 0.948
+      },
+      {
+        "pct_customers": 0.6,
+        "pct_revenue": 0.95
+      },
+      {
+        "pct_customers": 0.609,
+        "pct_revenue": 0.952
+      },
+      {
+        "pct_customers": 0.619,
+        "pct_revenue": 0.954
+      },
+      {
+        "pct_customers": 0.628,
+        "pct_revenue": 0.956
+      },
+      {
+        "pct_customers": 0.637,
+        "pct_revenue": 0.958
+      },
+      {
+        "pct_customers": 0.646,
+        "pct_revenue": 0.96
+      },
+      {
+        "pct_customers": 0.656,
+        "pct_revenue": 0.962
+      },
+      {
+        "pct_customers": 0.665,
+        "pct_revenue": 0.964
+      },
+      {
+        "pct_customers": 0.674,
+        "pct_revenue": 0.965
+      },
+      {
+        "pct_customers": 0.683,
+        "pct_revenue": 0.967
+      },
+      {
+        "pct_customers": 0.692,
+        "pct_revenue": 0.969
+      },
+      {
+        "pct_customers": 0.702,
+        "pct_revenue": 0.97
+      },
+      {
+        "pct_customers": 0.711,
+        "pct_revenue": 0.972
+      },
+      {
+        "pct_customers": 0.72,
+        "pct_revenue": 0.973
+      },
+      {
+        "pct_customers": 0.729,
+        "pct_revenue": 0.975
+      },
+      {
+        "pct_customers": 0.739,
+        "pct_revenue": 0.976
+      },
+      {
+        "pct_customers": 0.748,
+        "pct_revenue": 0.978
+      },
+      {
+        "pct_customers": 0.757,
+        "pct_revenue": 0.979
+      },
+      {
+        "pct_customers": 0.766,
+        "pct_revenue": 0.981
+      },
+      {
+        "pct_customers": 0.775,
+        "pct_revenue": 0.982
+      },
+      {
+        "pct_customers": 0.785,
+        "pct_revenue": 0.983
+      },
+      {
+        "pct_customers": 0.794,
+        "pct_revenue": 0.984
+      },
+      {
+        "pct_customers": 0.803,
+        "pct_revenue": 0.985
+      },
+      {
+        "pct_customers": 0.812,
+        "pct_revenue": 0.986
+      },
+      {
+        "pct_customers": 0.822,
+        "pct_revenue": 0.988
+      },
+      {
+        "pct_customers": 0.831,
+        "pct_revenue": 0.989
+      },
+      {
+        "pct_customers": 0.84,
+        "pct_revenue": 0.989
+      },
+      {
+        "pct_customers": 0.849,
+        "pct_revenue": 0.99
+      },
+      {
+        "pct_customers": 0.859,
+        "pct_revenue": 0.991
+      },
+      {
+        "pct_customers": 0.868,
+        "pct_revenue": 0.992
+      },
+      {
+        "pct_customers": 0.877,
+        "pct_revenue": 0.993
+      },
+      {
+        "pct_customers": 0.886,
+        "pct_revenue": 0.994
+      },
+      {
+        "pct_customers": 0.895,
+        "pct_revenue": 0.994
+      },
+      {
+        "pct_customers": 0.905,
+        "pct_revenue": 0.995
+      },
+      {
+        "pct_customers": 0.914,
+        "pct_revenue": 0.996
+      },
+      {
+        "pct_customers": 0.923,
+        "pct_revenue": 0.996
+      },
+      {
+        "pct_customers": 0.932,
+        "pct_revenue": 0.997
+      },
+      {
+        "pct_customers": 0.942,
+        "pct_revenue": 0.998
+      },
+      {
+        "pct_customers": 0.951,
+        "pct_revenue": 0.998
+      },
+      {
+        "pct_customers": 0.96,
+        "pct_revenue": 0.999
+      },
+      {
+        "pct_customers": 0.969,
+        "pct_revenue": 0.999
+      },
+      {
+        "pct_customers": 0.979,
+        "pct_revenue": 0.999
+      },
+      {
+        "pct_customers": 0.988,
+        "pct_revenue": 1.0
+      },
+      {
+        "pct_customers": 0.997,
+        "pct_revenue": 1.0
+      }
+    ]
+  },
+  "new_vs_returning": {
+    "returning_share_of_revenue": 0.7351,
+    "months": [
+      {
+        "month": "Dec 10",
+        "new_k": 565.2,
+        "returning_k": 0.0
+      },
+      {
+        "month": "Jan 11",
+        "new_k": 289.0,
+        "returning_k": 273.6
+      },
+      {
+        "month": "Feb 11",
+        "new_k": 157.3,
+        "returning_k": 285.0
+      },
+      {
+        "month": "Mar 11",
+        "new_k": 196.8,
+        "returning_k": 386.4
+      },
+      {
+        "month": "Apr 11",
+        "new_k": 120.0,
+        "returning_k": 334.5
+      },
+      {
+        "month": "May 11",
+        "new_k": 118.6,
+        "returning_k": 540.7
+      },
+      {
+        "month": "Jun 11",
+        "new_k": 133.6,
+        "returning_k": 519.7
+      },
+      {
+        "month": "Jul 11",
+        "new_k": 72.4,
+        "returning_k": 519.2
+      },
+      {
+        "month": "Aug 11",
+        "new_k": 78.5,
+        "returning_k": 557.0
+      },
+      {
+        "month": "Sep 11",
+        "new_k": 151.7,
+        "returning_k": 787.0
+      },
+      {
+        "month": "Oct 11",
+        "new_k": 162.1,
+        "returning_k": 840.3
+      },
+      {
+        "month": "Nov 11",
+        "new_k": 133.6,
+        "returning_k": 1002.9
+      }
+    ]
+  },
+  "risk_pool": {
+    "n": 1087,
+    "base_rate": 0.1224
+  },
+  "risk_by_recency": {
+    "0-7 d": {
+      "rate": 0.0987,
+      "n": 385
+    },
+    "8-14 d": {
+      "rate": 0.131,
+      "n": 336
+    },
+    "15-21 d": {
+      "rate": 0.1038,
+      "n": 212
+    },
+    "22-30 d": {
+      "rate": 0.1883,
+      "n": 154
+    }
+  },
+  "risk_by_frequency": {
+    "3": {
+      "rate": 0.2012,
+      "n": 502
+    },
+    "4-5": {
+      "rate": 0.0886,
+      "n": 350
+    },
+    "6-8": {
+      "rate": 0.0068,
+      "n": 146
+    },
+    "9+": {
+      "rate": 0.0,
+      "n": 89
+    }
+  },
+  "risk_by_delay": {
+    "<0.5x": {
+      "rate": 0.1293,
+      "n": 518
+    },
+    "0.5-1x": {
+      "rate": 0.1199,
+      "n": 342
+    },
+    "1-2x": {
+      "rate": 0.1173,
+      "n": 179
+    },
+    ">2x": {
+      "rate": 0.0833,
+      "n": 48
+    }
+  },
+  "money_at_risk": {
+    "cutoff": "2011-10-01",
+    "list_size": 34,
+    "list_90d_spend": 22547.78,
+    "eligible_90d_spend": 1114806.0,
+    "avg_90d_spend_per_listed": 663.17
+  },
+  "validation": {
+    "recency": {
+      "hits": 9,
+      "k": 32,
+      "precision": 0.2812,
+      "lift": 2.36,
+      "ap": 0.193
+    },
+    "rfm": {
+      "hits": 8,
+      "k": 32,
+      "precision": 0.25,
+      "lift": 2.1,
+      "ap": 0.235
+    },
+    "rfm_timing": {
+      "hits": 10,
+      "k": 32,
+      "precision": 0.3125,
+      "lift": 2.63,
+      "ap": 0.273
+    },
+    "base_rate": 0.119
+  },
+  "final_test": {
+    "model": "rfm_timing",
+    "n": 334,
+    "k": 34,
+    "hits": 7,
+    "precision": 0.2059,
+    "base_rate": 0.0988,
+    "lift": 2.08,
+    "ap": 0.164
+  },
+  "monthly_active": [
+    {
+      "month": "Dec 10",
+      "n": 884
+    },
+    {
+      "month": "Jan 11",
+      "n": 739
+    },
+    {
+      "month": "Feb 11",
+      "n": 757
+    },
+    {
+      "month": "Mar 11",
+      "n": 973
+    },
+    {
+      "month": "Apr 11",
+      "n": 853
+    },
+    {
+      "month": "May 11",
+      "n": 1054
+    },
+    {
+      "month": "Jun 11",
+      "n": 990
+    },
+    {
+      "month": "Jul 11",
+      "n": 946
+    },
+    {
+      "month": "Aug 11",
+      "n": 933
+    },
+    {
+      "month": "Sep 11",
+      "n": 1259
+    },
+    {
+      "month": "Oct 11",
+      "n": 1361
+    },
+    {
+      "month": "Nov 11",
+      "n": 1660
+    }
+  ],
+  "one_time_buyer_share": 0.3595
+}

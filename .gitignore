@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Node (report deck builder) - reinstall with `npm install`
+node_modules/
+
+# Office lock files / OS junk
+~$*
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.streamlit/secrets.toml
