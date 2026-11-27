@@ -110,6 +110,48 @@ st.html(f"""
       font-family: inherit; font-size: .98rem; line-height: 1.5; animation: cf-slide-in .6s ease both; }}
   .cf-action b {{ color: #F2C078; font-weight: 600; white-space: nowrap; }}
 
+  /* KPI labels wrap instead of being cut off with "..." */
+  [class*="st-key-kpi_"] [data-testid="stMetricLabel"],
+  [class*="st-key-kpi_"] [data-testid="stMetricLabel"] * {{
+      white-space: normal !important; overflow: visible !important;
+      text-overflow: clip !important; }}
+
+  /* ---------- Responsive: tablets (tabs become a 2 x 2 grid) ---------- */
+  @media (max-width: 1100px) {{
+    .cf-hero {{ padding: 26px 24px 22px; }}
+    .cf-hero h1 {{ font-size: 2rem; }}
+    .cf-hero p {{ font-size: 1rem; }}
+    .st-key-section [role="tablist"] {{ flex-wrap: wrap; gap: 6px; padding: 6px;
+        overflow: visible; }}
+    .st-key-section [role="tab"] {{ flex: 1 1 calc(50% - 6px); min-width: 0;
+        min-height: 52px; padding: 10px 6px; white-space: normal; text-align: center; }}
+    .st-key-section [role="tab"] p {{ font-size: .95rem; line-height: 1.25; }}
+  }}
+
+  /* ---------- Responsive: phones ---------- */
+  @media (max-width: 640px) {{
+    .cf-hero {{ padding: 20px 18px 18px; border-radius: 14px; }}
+    .cf-hero h1 {{ font-size: 1.6rem; margin: 8px 0 6px; }}
+    .cf-hero p {{ font-size: .95rem; margin-bottom: 14px; }}
+    .cf-hero::before {{ width: 160px; height: 160px; right: -60px; top: -70px; }}
+    .cf-hero::after {{ display: none; }}
+    .cf-eyebrow {{ font-size: .68rem; letter-spacing: .12em; line-height: 1.4; }}
+    .cf-chips {{ gap: 6px; }}
+    .cf-chip {{ font-size: .76rem; padding: 7px 10px; line-height: 1.3; }}
+
+    .st-key-section [role="tab"] p {{ font-size: .88rem; }}
+    [class*="st-key-kpi_"] [data-testid="stMetricValue"] {{ font-size: 1.55rem; }}
+
+    .cf-action {{ flex-direction: column; gap: 4px; padding: 12px 14px;
+        font-size: .92rem; }}
+  }}
+
+  /* Touch screens: no hover "lift" (it sticks after a tap) */
+  @media (hover: none) {{
+    [class*="st-key-kpi_"]:hover, [class*="st-key-card_"]:hover,
+    .st-key-section [role="tab"]:hover {{ transform: none; }}
+  }}
+
   @media (prefers-reduced-motion: reduce) {{
     .cf-hero, .cf-hero::before, .cf-hero::after, .cf-dot, .cf-action,
     [class*="st-key-kpi_"], [class*="st-key-card_"],
@@ -155,9 +197,28 @@ def capture_at(test, share):
     return test["target_no_purchase"].iloc[:k].sum() / test["target_no_purchase"].sum()
 
 
+# Long category labels break onto two or more lines so they fit narrow phone screens.
+WRAP_LABEL = "length(datum.label) > 9 ? split(datum.label, ' ') : datum.label"
+
+
+def kpi_grid(cards, prefix):
+    """Metric cards: 4 across on desktop, 2 x 2 on tablets, stacked on phones."""
+    with st.grid(len(cards), min_column_width=150, gap="small"):
+        for i, (label, value, icon, tip, *delta) in enumerate(cards, start=1):
+            with st.container(border=True, key=f"kpi_{prefix}{i}", height="stretch"):
+                st.metric(label, value, icon=icon, help=tip,
+                          delta=delta[0] if delta else None)
+
+
+def card_pair():
+    """Two chart cards side by side on wide screens, stacked on phones/tablets."""
+    return st.grid(2, min_column_width=400, gap="medium")
+
+
 def bar_chart(df, x, y, color, x_title, y_title, fmt=".0%", height=290):
     base = alt.Chart(df).encode(
-        x=alt.X(f"{x}:N", sort=None, title=x_title, axis=alt.Axis(labelAngle=0)),
+        x=alt.X(f"{x}:N", sort=None, title=x_title,
+                axis=alt.Axis(labelAngle=0, labelExpr=WRAP_LABEL)),
         y=alt.Y(f"{y}:Q", title=y_title, axis=alt.Axis(format=fmt)),
         tooltip=[alt.Tooltip(f"{x}:N", title=x_title or x),
                  alt.Tooltip(f"{y}:Q", title=y_title, format=fmt)] +
@@ -228,9 +289,7 @@ kpis = [
      f"Proven on Oct 2011 data the model never saw: {ft['hits']} of {ft['k']} "
      f"flagged customers really stopped, vs about {ft['base_rate']:.0%} by chance."),
 ]
-for i, (col, (label, value, icon, tip)) in enumerate(zip(st.columns(4), kpis), start=1):
-    with col.container(border=True, key=f"kpi_{i}", height="stretch"):
-        st.metric(label, value, icon=icon, help=tip)
+kpi_grid(kpis, "")
 
 st.space("small")
 tab1, tab3, tab2, tab4 = st.tabs(
@@ -261,19 +320,15 @@ with tab1:
     view = latest.head(n)
     view = view[view["monetary"] >= min_spend]
 
-    s1, s2, s3 = st.columns(3)
-    with s1.container(border=True, key="kpi_s1", height="stretch"):
-        st.metric("Customers on your list", f"{len(view)}", icon=":material/checklist:",
-                  help=f"The riskiest {n} regulars ({share:.0%}), after the spend filter.")
-    with s2.container(border=True, key="kpi_s2", height="stretch"):
-        st.metric("Leavers you would reach", f"{cap:.0%}", icon=":material/target:",
-                  delta=f"{(cap - share) * 100:+.0f} pts vs random calls",
-                  help="Share of customers who really left that this list size "
-                       "reached in our October 2011 test.")
-    with s3.container(border=True, key="kpi_s3", height="stretch"):
-        st.metric("Their recent spend", f"£{view['monetary'].sum():,.0f}",
-                  icon=":material/savings:",
-                  help="What these customers spent in the last 90 days.")
+    kpi_grid([
+        ("Customers on your list", f"{len(view)}", ":material/checklist:",
+         f"The riskiest {n} regulars ({share:.0%}), after the spend filter."),
+        ("Leavers you would reach", f"{cap:.0%}", ":material/target:",
+         "Share of customers who really left that this list size reached in our "
+         "October 2011 test.", f"{(cap - share) * 100:+.0f} pts vs random calls"),
+        ("Their recent spend", f"£{view['monetary'].sum():,.0f}", ":material/savings:",
+         "What these customers spent in the last 90 days."),
+    ], "s")
 
     table = pd.DataFrame({
         "Customer": view["CustomerID"].astype(str),
@@ -299,6 +354,8 @@ with tab1:
                 "Suggested action": st.column_config.TextColumn(width="large"),
                 "Why flagged": st.column_config.TextColumn(width="medium"),
             })
+        st.caption(":material/swipe: On a phone, swipe the table sideways to see all "
+                   "columns.")
         st.download_button("Download this list (CSV, opens in Excel)",
                            table.to_csv(index=False).encode("utf-8"),
                            file_name=f"follow_up_list_{score_date:%Y%m%d}.csv",
@@ -313,7 +370,6 @@ with tab3:
     cid = st.selectbox("Customer number (type to search)", options, index=0)
     row = latest[latest["CustomerID"].astype(str) == cid].iloc[0]
 
-    k = st.columns(4)
     cards = [
         ("Risk level", row["risk_level"], ":material/flag:",
          f"Rank {int(row['rank'])} of {len(latest)} regular customers."),
@@ -324,9 +380,7 @@ with tab3:
         ("Spent in last 90 days", f"£{row['monetary']:,.0f}", ":material/payments:",
          f"{int(row['n_dates'])} separate order days."),
     ]
-    for i, (col, (label, value, icon, tip)) in enumerate(zip(k, cards), start=1):
-        with col.container(border=True, key=f"kpi_c{i}", height="stretch"):
-            st.metric(label, value, icon=icon, help=tip)
+    kpi_grid(cards, "c")
 
     with st.container(border=True, key="card_lookup"):
         st.progress(min(float(row["risk_score"]) / 0.6, 1.0),
@@ -343,7 +397,7 @@ with tab3:
             "Typical regular": [int(typical["recency_days"]), round(typical["usual_gap"]),
                                 int(typical["n_dates"]), round(typical["monetary"])],
         })
-        st.dataframe(comp, hide_index=True, width="content")
+        st.dataframe(comp, hide_index=True, width="stretch")
     st.caption("Customers who are not on this list are not regulars right now "
                "(fewer than 3 order days in 90 days, or no order in the last 30 days).")
 
@@ -352,8 +406,8 @@ with tab2:
     st.subheader("The patterns behind the list", icon=":material/insights:")
     st.caption("What one year of sales shows about who stops buying, and what to do "
                "about each pattern. Use it to plan offers and reminders, not just calls.")
-    a, b = st.columns(2)
-    with a.container(border=True, key="card_habit", height="stretch"):
+    pair = card_pair()
+    with pair.container(border=True, key="card_habit", height="stretch"):
         st.markdown("##### Shallow buying habits break first")
         f = S["risk_by_frequency"]
         df = pd.DataFrame({"Order days in last 90 days": list(f),
@@ -366,7 +420,7 @@ with tab2:
         action_box("Send reorder reminders and small loyalty rewards to customers "
                    "with only 3 order days. Getting them to a 4th order cuts the "
                    "risk by more than half.")
-    with b.container(border=True, key="card_quiet", height="stretch"):
+    with pair.container(border=True, key="card_quiet", height="stretch"):
         st.markdown("##### Three quiet weeks is a warning sign")
         r = S["risk_by_recency"]
         df = pd.DataFrame({"Days since last order": [k.replace(" d", " days") for k in r],
@@ -379,8 +433,8 @@ with tab2:
         action_box("When a regular passes 3 weeks without ordering, send a personal "
                    "check-in before the silence becomes a loss.")
 
-    a, b = st.columns(2)
-    with a.container(border=True, key="card_revenue", height="stretch"):
+    pair = card_pair()
+    with pair.container(border=True, key="card_revenue", height="stretch"):
         rc = S["revenue_concentration"]
         st.markdown(f"##### Top 10% of customers bring {rc['top10pct_share']:.0%} of revenue")
         curve = pd.concat([pd.DataFrame({"pct_customers": [0], "pct_revenue": [0]}),
@@ -400,7 +454,7 @@ with tab2:
         st.altair_chart((diag + area).properties(height=290), width="stretch")
         action_box("Treat big spenders as key accounts. When one appears on the risk "
                    "list, call them first.")
-    with b.container(border=True, key="card_returning", height="stretch"):
+    with pair.container(border=True, key="card_returning", height="stretch"):
         nv = S["new_vs_returning"]
         st.markdown(f"##### Returning customers pay "
                     f"{nv['returning_share_of_revenue']:.0%} of the bills")
@@ -413,7 +467,7 @@ with tab2:
         st.altair_chart(alt.Chart(long).mark_bar(cornerRadiusTopLeft=3,
                                                  cornerRadiusTopRight=3).encode(
             x=alt.X("month:N", sort=list(m["month"]), title=None,
-                    axis=alt.Axis(labelAngle=0)),
+                    axis=alt.Axis(labelAngle=0, labelExpr="split(datum.label, ' ')")),
             y=alt.Y("Revenue (£ thousand):Q"),
             color=alt.Color("Customer type:N",
                             scale=alt.Scale(domain=["Returning", "New"],
@@ -432,7 +486,6 @@ with tab4:
     st.subheader("Can I trust this list?", icon=":material/verified:")
     st.caption("How the score was tested on months it had never seen, and how it "
                "compares with calling customers at random.")
-    t = st.columns(3)
     proof = [
         ("Flagged customers who really left", f"{ft['hits']} of {ft['k']}",
          ":material/task_alt:", "October 2011 test, opened once after the model was frozen."),
@@ -441,14 +494,12 @@ with tab4:
         ("Lift over random", f"{ft['lift']:.1f}x", ":material/rocket_launch:",
          "How many more real leavers each call reaches than an untargeted call."),
     ]
-    for i, (col, (label, value, icon, tip)) in enumerate(zip(t, proof), start=1):
-        with col.container(border=True, key=f"kpi_p{i}", height="stretch"):
-            st.metric(label, value, icon=icon, help=tip)
+    kpi_grid(proof, "p")
 
     st.caption("Trained on April-June 2011, best version chosen on August 2011, then "
                "tested once on October 2011 - data the model had never seen.")
-    a, b = st.columns(2)
-    with a.container(border=True, key="card_gains", height="stretch"):
+    pair = card_pair()
+    with pair.container(border=True, key="card_gains", height="stretch"):
         st.markdown("##### October 2011 test: leavers found")
         y = test["target_no_purchase"].to_numpy()
         g = pd.DataFrame({
@@ -471,7 +522,7 @@ with tab4:
             tooltip=[alt.Tooltip("Customers contacted:Q", format=".0%"),
                      alt.Tooltip("Leavers found:Q", format=".0%")],
         ).properties(height=300), width="stretch")
-    with b.container(border=True, key="card_method", height="stretch"):
+    with pair.container(border=True, key="card_method", height="stretch"):
         st.markdown("##### Choosing the method (August 2011)")
         v = S["validation"]
         df = pd.DataFrame({
@@ -486,17 +537,17 @@ with tab4:
 
     with st.container(border=True, key="card_drivers"):
         st.markdown("##### What the score looks at")
-        st.caption("Bigger bar = stronger effect. Left makes a customer safer, "
-                   "right makes them riskier.")
+        st.caption("Bigger bar = stronger effect. :gray[**Grey bars (left)**] make a "
+                   "customer safer; :primary[**pink bars (right)**] make them riskier.")
         d = drivers.assign(Effect=np.where(drivers["coef"] > 0, "Raises risk",
                                            "Lowers risk"))
         st.altair_chart(alt.Chart(d).mark_bar(cornerRadius=4).encode(
             y=alt.Y("label:N", sort="x", title=None,
-                    axis=alt.Axis(labelLimit=320, labelFontSize=13, labelOverlap=False)),
+                    axis=alt.Axis(labelLimit=320, labelFontSize=12, labelOverlap=False)),
             x=alt.X("coef:Q", title="Effect on risk"),
             color=alt.Color("Effect:N", scale=alt.Scale(
                 domain=["Raises risk", "Lowers risk"], range=[RASP, GRAY]),
-                legend=alt.Legend(orient="top", title=None)),
+                legend=None),
             tooltip=["label", alt.Tooltip("coef:Q", format="+.2f"), "Effect"],
         ).properties(height=300), width="stretch")
     st.caption(":material/info: Limits: one shop and one year of data. Seasons shift "
